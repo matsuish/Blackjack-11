@@ -1,0 +1,107 @@
+<center><h1>BlackJack</h1></center>
+
+<link href="/assets/css/BlackJack.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+
+<body>
+<table>
+
+    <tr>
+        <td>Dealer</td>
+    </tr>
+
+    <td class="rowOfCards" id="c0">
+        <table>
+            <th><td class="cardLocation l0"></td></th>
+            <th><td class="cardLocation l1"></td></th>
+            <th><td class="cardLocation l2"></td></th>
+            <th><td class="cardLocation l3"></td></th>
+            <th><td class="cardLocation l4"></td></th>
+            <th><td class="cardLocation l5"></td></th>
+            <th><td class="cardLocation l6"></td></th>
+            <th><td class="cardLocation l7"></td></th>
+            <th><td class="cardLocation l8"></td></th>
+        </table>
+    </td>
+
+    <tr>
+        <td>Player</td>
+    </tr>
+
+    <td class="rowOfCards" id="c1">
+        <table>
+            <th><td class="cardLocation l0"></td></th>
+            <th><td class="cardLocation l1"></td></th>
+            <th><td class="cardLocation l2"></td></th>
+            <th><td class="cardLocation l3"></td></th>
+            <th><td class="cardLocation l4"></td></th>
+            <th><td class="cardLocation l5"></td></th>
+            <th><td class="cardLocation l6"></td></th>
+            <th><td class="cardLocation l7"></td></th>
+            <th><td class="cardLocation l8"></td></th>
+        </table>
+    </td>
+
+</table>
+
+<p></p>
+
+<tr class="score">
+    <td>Winings:</td>
+    <td id="score"></td>
+    <p></p>
+    <td>Bet:</td>
+    <td id="bet"></td>
+</tr>
+
+<p></p>
+
+<button id="hitButton">Hit</button>
+<button id="stayButton">Stay</button>
+<button id="doubleButton">Double</button>
+
+<p></p>
+<td>Player Wins:</td>
+<td id="playerWin"></td>
+<p></p>
+<td>Dealer Wins:</td>
+<td id="dealerWin"></td>
+<p></p>
+<td>Game State:</td>
+<td id="gameStateString"></td>
+<p></p>
+
+<script>
+
+var game;
+
+function display(game) {
+console.log(game);
+
+$( '.rowOfCards .cardLocation' ).html("");
+
+    $.each(game.rows[0], function( key, val ) {
+        $( '#c0 .l'+key ).html(val.value + val.suit);
+    });
+
+ $.each(game.rows[1], function( key, val ) {
+        $( '#c1 .l'+key ).html(val.value + val.suit);
+    });
+
+}
+
+$.getJSON("http://localhost:8080/gameBlackJack", function( data ) {
+display(data);
+game = data;
+});
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
