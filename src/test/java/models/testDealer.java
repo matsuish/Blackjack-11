@@ -31,6 +31,18 @@ public class testDealer {
     }
 
     @Test
+    public void testGameInitMoney(){
+        BlackJack g = new Dealer();
+        assertEquals(100,g.money);
+    }
+
+    @Test
+    public void testGameInitString(){
+        BlackJack g = new Dealer();
+        assertEquals("Game is running",g.gameStateString);
+    }
+
+    @Test
     public void testGameStart(){
         BlackJack g = new Dealer();
         g.shuffle();
