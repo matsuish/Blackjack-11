@@ -46,12 +46,14 @@ public abstract class BlackJack {
     }
 
     public void dealTwo() {
+        //Deals to Dealer
         for(int i = 0; i < 2; i++){
-            rows.get(i).add(deck.get(deck.size()-1));
+            rows.get(0).add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
         }
+        //Deals to Player
         for(int i = 0; i < 2; i++){
-            rows.get(i).add(deck.get(deck.size()-1));
+            rows.get(1).add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
         }
     }
