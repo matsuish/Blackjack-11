@@ -18,12 +18,16 @@ public abstract class BlackJack {
 
     public String gameStateString;
 
+    public int money;
+    public int playerBet;
+
     public BlackJack() {
         //Dealer
         rows.add(new ArrayList<Card>());
         //Player
         rows.add(new ArrayList<Card>());
         buildDeck();
+        money = 100;
         gameStateString = "Game is running";
     }
 
