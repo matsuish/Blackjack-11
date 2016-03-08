@@ -27,36 +27,30 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
 public class ApiControllerDocTesterTest extends NinjaDocTester {
-    
+
     String URL_INDEX = "/";
-    String URL_HELLO_WORLD_JSON = "/hello_world.json";
-    
+    String URL_BLACKJACK = "/BlackJack";
+
     @Test
     public void testGetIndex() {
-    
+
         Response response = makeRequest(
                 Request.GET().url(
                         testServerUrl().path(URL_INDEX)));
 
         assertThat(response.payload, containsString("Hello World!"));
         assertThat(response.payload, containsString("BAM!"));
-
-
     }
-    
+
     @Test
-    public void testGetHelloWorldJson() {
-    
+    public void testBlackJack() {
         Response response = makeRequest(
                 Request.GET().url(
-                        testServerUrl().path(URL_HELLO_WORLD_JSON)));
+                        testServerUrl().path(URL_BLACKJACK)));
 
-        ApplicationController.SimplePojo simplePojo 
-                = response.payloadJsonAs(ApplicationController.SimplePojo.class);
-        
-        assertThat(simplePojo.content, CoreMatchers.equalTo("Hello World! Hello Json!"));
-
-    
+        assertThat(response.payload, containsString("BlackJack"));
+        assertThat(response.payload, containsString("rowOfCards"));
     }
+
 
 }

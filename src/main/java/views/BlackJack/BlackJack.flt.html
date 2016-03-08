@@ -1,0 +1,126 @@
+<center><h1>BlackJack</h1></center>
+
+<link href="/assets/css/BlackJack.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+
+<body>
+
+<table>
+    <tr class="gameStateString">
+        <tk>Game State: </tk>
+        <tk id="gameStateString"></tk>
+    </tr>
+    <p></p>
+</table>
+<table>
+    <tr>
+        <center><tk><h3>Dealer</h3></tk></center>
+    </tr>
+</table>
+<table>
+    <td class="rowOfCards" id="c0">
+        <center><table>
+            <th><td class="cardLocation l0"></td></th>
+            <th><td class="cardLocation l1"></td></th>
+        </table></center>
+        <center><table>
+            <th><th class="cardLocation l2"></th></th>
+            <th><th class="cardLocation l3"></th></th>
+            <th><th class="cardLocation l4"></th></th>
+            <th><th class="cardLocation l5"></th></th>
+            <th><th class="cardLocation l6"></th></th>
+            <th><th class="cardLocation l7"></th></th>
+            <th><th class="cardLocation l8"></th></th>
+        </table></center>
+    </td>
+</table>
+<table>
+    <tr>
+        <center><tk><h3>Player</h3></tk></center>
+    </tr>
+</table>
+<table>
+    <td class="rowOfCards" id="c1">
+        <center><table>
+            <th><td class="cardLocation l0"></td></th>
+            <th><td class="cardLocation l1"></td></th>
+        </table></center>
+        <center><table>
+            <th><th class="cardLocation l2"></th></th>
+            <th><th class="cardLocation l3"></th></th>
+            <th><th class="cardLocation l4"></th></th>
+            <th><th class="cardLocation l5"></th></th>
+            <th><th class="cardLocation l6"></th></th>
+            <th><th class="cardLocation l7"></th></th>
+            <th><th class="cardLocation l8"></th></th>
+        </table></center>
+    </td>
+
+</table>
+
+<p></p>
+
+<table>
+    <tr class="money">
+        <tk>Player Money: $</tk>
+        <tk id="money"></tk>
+    </tr>
+</table>
+
+    <BR>Betting: <input type="text" id="betting"/> <button id="Bet!">Bet</button>
+    <p></p>
+    <td>Player Bet:</td>
+    <td id="betAmount"></td>
+
+<p></p>
+
+<button id="hitButton">Hit</button>
+<button id="stayButton">Stay</button>
+<button id="doubleButton">Double</button>
+
+<p></p>
+<td>Player Wins:</td>
+<td id="playerWin"></td>
+<p></p>
+<td>Dealer Wins:</td>
+<td id="dealerWin"></td>
+<p></p>
+
+
+<script>
+
+var game;
+
+function display(game) {
+console.log(game);
+$('#gameStateString').html(game.gameStateString);
+$('#money').html(game.money);
+
+
+$( '.rowOfCards .cardLocation' ).html("");
+
+    $.each(game.rows[0], function( key, val ) {
+        $( '#c0 .l0' ).html(val.value + val.suit);
+    });
+
+ $.each(game.rows[1], function( key, val ) {
+        $( '#c1 .l'+key ).html(val.value + val.suit);
+    });
+
+}
+
+$.getJSON("http://localhost:8080/gameBlackJack", function( data ) {
+display(data);
+game = data;
+});
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
